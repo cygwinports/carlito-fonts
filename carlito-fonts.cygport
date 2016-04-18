@@ -1,0 +1,30 @@
+inherit font
+
+NAME="carlito-fonts"
+VERSION=20130920
+RELEASE=1
+CATEGORY="X11"
+SUMMARY="Font metric-compatible with Calibri"
+DESCRIPTION="Carlito is a modern, friendly sans-serif font, metric-compatible
+with Microsoft Fonts Calibri font. Carlito comes in regular, bold, italic, and
+bold italic. The family covers Latin-Greek-Cyrillic with about 2,000 glyphs.
+It has the same character coverage as Microsoft Fonts Calibri. This font is
+sans-serif typeface family based on Lato."
+HOMEPAGE="http://code.google.com/p/chromium/issues/detail?id=280557"
+SRC_URI="
+	http://gsdview.appspot.com/chromeos-localmirror/distfiles/crosextrafonts-carlito-${VERSION}.tar.gz
+	http://pkgs.fedoraproject.org/cgit/rpms/google-crosextra-carlito-fonts.git/plain/30-0-google-crosextra-carlito-fontconfig.conf
+	http://pkgs.fedoraproject.org/cgit/rpms/google-crosextra-carlito-fonts.git/plain/62-google-crosextra-carlito-fontconfig.conf
+"
+SRC_DIR="crosextrafonts-carlito-${VERSION}"
+
+ARCH=noarch
+
+src_compile() { :; }
+
+src_install() {
+	cd ${S}
+	fontinto ${NAME%-fonts}
+	dofont Carlito*.ttf
+	dofontconf *-fontconfig.conf
+}
